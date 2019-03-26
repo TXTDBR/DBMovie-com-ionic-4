@@ -10,9 +10,12 @@ import { ProviderService } from 'src/app/services/provider.service';
   ]
 })
 export class MoviesPage implements OnInit {
+  public movies:any = [];
 
   constructor(private mdbService: ProviderService) { }
-  ngOnInit() { }
+  ngOnInit() { 
+    this.topRatedMovies();
+  }
 
   topRatedMovies(){
     this.mdbService.getMovieTopRated().subscribe(
@@ -20,6 +23,7 @@ export class MoviesPage implements OnInit {
         let resposta = (data as any)._body;
         resposta = JSON.parse(resposta);
         console.log(resposta);
+        this.movies = resposta.results;
     }, error=>{
       console.log(error);
     });
