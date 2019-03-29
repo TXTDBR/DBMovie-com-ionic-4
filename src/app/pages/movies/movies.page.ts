@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProviderService } from 'src/app/services/provider.service';
 import { LoadingController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.page.html',
@@ -41,4 +42,8 @@ export class MoviesPage implements OnInit {
     }).add();
   }
 
+  doRefresh(event) {
+  
+
+    }
 }

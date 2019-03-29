@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>movieDetails</ion-title>
+    <ion-title>Detalhes do Filme</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-card-header>
+  
+  <ion-card-title class="text-center">
+      {{movie.title}}
+  </ion-card-title>
+  <ion-card-subtitle>Lançamento: {{movie.release_date}}</ion-card-subtitle>
+  <img [src]="'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path">
+  <h3>Gêneros:</h3>
+  <span *ngFor="let g of movie.genres" class="g">{{g.name}}</span>
+  <h3>Sinopse:</h3>
+  <p>{{movie.overview}}</p>
+  <p>Popularidade:{{movie.popularity}}</p>
+</ion-card-header>
 <ion-content>
 
 </ion-content>

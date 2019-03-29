@@ -8,10 +8,13 @@
 </ion-header>
 
 <ion-content>
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content></ion-refresher-content>
+              </ion-refresher>
   
-    <ion-card-header *ngFor="let movie of movies">
+    <ion-card-header *ngFor="let movie of movies" routerLink="/details/{{movie.id}}">
         <ion-card-title class="text-center">
-            {{movie.original_title}}
+            {{movie.title}}
         </ion-card-title>
         <ion-card-subtitle>Lançamento: {{movie.release_date}}</ion-card-subtitle>
         <img [src]="'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path">
