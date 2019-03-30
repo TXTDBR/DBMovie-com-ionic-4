@@ -22,7 +22,7 @@ export class ProviderService {
   }
   //retorno do tipo observable
   getMovies(param:string):Observable<any>{
-    const url = `${this.URL}/movie/${param}?api_key=${this.API}&language=pt-BR`;
+    const url = `${this.URL}/${param}api_key=${this.API}&language=pt-BR`;
     return this.http.get<any>(url).pipe(
       tap(_ => console.log(`O parametro requisitado foi: ${param}`)),
       catchError(this.handletError<any>(`Falha no getMovies parametro = ${param}`))

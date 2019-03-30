@@ -39,7 +39,5 @@ export class MovieDetailsPage implements OnInit {
     }).add();
   }
 
-  doRefresh(event) {
-  this.topRatedMovies();
-  }
+
 }

@@ -3,15 +3,27 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-    <ion-title text-center>Movies</ion-title>
+    <ion-title text-center  >Movies</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
         <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-                <ion-refresher-content></ion-refresher-content>
+                <ion-refresher-content
+                  pullingIcon="arrow-dropdown" 
+                  pullingText="Atualizar"
+                  refreshingSpinner="circles"
+                  refreshingTet="Atualizando...">
+                </ion-refresher-content>
+                
               </ion-refresher>
-  
+              <ion-searchbar 
+              [(ngModel)]="movie_name"
+              (change)="topRatedMovies()" 
+              showCancelButton 
+              cancelButtonText="Custom Cancel"
+              animated
+               placeholder="Pesquisar..."></ion-searchbar>
     <ion-card-header *ngFor="let movie of movies" routerLink="/details/{{movie.id}}">
         <ion-card-title class="text-center">
             {{movie.title}}

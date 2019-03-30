@@ -12,38 +12,42 @@ import { LoadingController } from '@ionic/angular';
   ]
 })
 export class MoviesPage implements OnInit {
-  
-  public movies:any = [];
-  private param:string = "top_rated";
 
+  public movies: any = [];
+  private categorias = ["popular", "top_rated", "now_playing", "upcoming"];
+  private movie_name: string;
   constructor(private mdbService: ProviderService,
     private loadingController: LoadingController) { }
-  ngOnInit() { 
+  ngOnInit() {
     this.topRatedMovies();
   }
-  
-  
 
-  async topRatedMovies(){
+
+
+  async topRatedMovies(index?) {
+    index = (typeof index === 'undefined') ? 4 : Math.floor(Math.random() * 4);
+    let param = (this.movie_name === 'undefined') ? this.categorias[index] : `search/movie?query="${this.movie_name}&include_adult=false&`;
     const loading = await this.loadingController.create({
       message: 'Carregando filmes...'
     });
-  
+
     await loading.present();
-    this.mdbService.getMovies(this.param).subscribe(
-      data=>{
+    this.mdbService.getMovies(param).subscribe(
+      data => {
         /*let resposta = (data as any)._body;
         resposta = JSON.parse(resposta);
         console.log(resposta);*/
         this.movies = data.results;
         loading.dismiss();
-    }, error=>{
-      console.log(error);
-    }).add();
+      }, error => {
+        console.log(error);
+      }).add();
   }
 
   doRefresh(event) {
-  
-
-    }
+    this.topRatedMovies('radom');
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
 }
